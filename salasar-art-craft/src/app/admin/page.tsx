@@ -82,17 +82,27 @@ export default function AdminDashboard() {
 
   return (
     <div className="flex h-screen bg-cream overflow-hidden">
+      {/* Mobile Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={() => setIsSidebarOpen(false)} />
+      )}
+
       {/* Left Sidebar */}
       <motion.aside 
         initial={{ x: -300 }}
         animate={{ x: 0 }}
-        className="w-64 bg-navy text-white flex flex-col flex-shrink-0 z-20"
+        className={`fixed inset-y-0 left-0 w-64 bg-navy text-white flex flex-col flex-shrink-0 z-50 transform transition-transform duration-300 md:relative md:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
       >
-        <div className="p-6 border-b border-white/10">
-          <div className="bg-white/95 p-3 rounded-xl inline-block mb-2 shadow-lg">
-            <Image src="/logo.png" alt="Salasar Art Craft" width={150} height={40} className="h-8 w-auto object-contain" />
+        <div className="p-6 border-b border-white/10 flex items-start justify-between">
+          <div>
+            <div className="bg-white/95 p-3 rounded-xl inline-block mb-2 shadow-lg">
+              <Image src="/logo.png" alt="Salasar Art Craft" width={150} height={40} className="h-8 w-auto object-contain" />
+            </div>
+            <p className="text-gold text-xs font-medium tracking-widest uppercase mt-2">Admin Portal</p>
           </div>
-          <p className="text-gold text-xs font-medium tracking-widest uppercase mt-2">Admin Portal</p>
+          <button onClick={() => setIsSidebarOpen(false)} className="md:hidden text-white/50 hover:text-white p-1">
+            <X size={24} />
+          </button>
         </div>
 
         <nav className="flex-1 overflow-y-auto py-6 flex flex-col gap-2 px-4">
@@ -102,7 +112,7 @@ export default function AdminDashboard() {
             return (
               <button
                 key={item.id}
-                onClick={() => setActiveTab(item.id)}
+                onClick={() => { setActiveTab(item.id); setIsSidebarOpen(false); }}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${
                   isActive ? "bg-gold/10 text-gold" : "text-white/70 hover:bg-white/5 hover:text-white"
                 }`}
@@ -126,13 +136,18 @@ export default function AdminDashboard() {
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         
         {/* Top Header */}
-        <header className="bg-white border-b border-navy/5 h-16 flex flex-col md:flex-row md:items-center justify-between gap-4 px-8 flex-shrink-0 z-10 shadow-sm">
-          <div className="flex items-center gap-4 text-sm">
-            <span className="text-navy/50">Admin Access:</span>
-            <span className="font-medium text-navy bg-navy/5 px-3 py-1 rounded-full">lovekumawat1511@gmail.com</span>
+        <header className="bg-white border-b border-navy/5 h-auto md:h-16 py-4 md:py-0 flex flex-col md:flex-row md:items-center justify-between gap-4 px-4 md:px-8 flex-shrink-0 z-10 shadow-sm relative">
+          <div className="flex items-center justify-between md:justify-start w-full md:w-auto gap-4 text-sm">
+            <div className="flex items-center gap-4">
+              <span className="text-navy/50 hidden md:inline">Admin Access:</span>
+              <span className="font-medium text-navy bg-navy/5 px-3 py-1 rounded-full truncate max-w-[200px] md:max-w-none">lovekumawat1511@gmail.com</span>
+            </div>
+            <button onClick={() => setIsSidebarOpen(true)} className="md:hidden text-navy hover:bg-navy/5 p-2 rounded-lg transition-colors">
+              <Menu size={24} />
+            </button>
           </div>
           
-          <button onClick={handleLogout} className="text-sm font-medium text-navy/70 hover:text-navy transition-colors flex items-center gap-2">
+          <button onClick={handleLogout} className="hidden md:flex text-sm font-medium text-navy/70 hover:text-navy transition-colors items-center gap-2">
             <LogOut size={16} />
             Logout
           </button>
@@ -458,7 +473,7 @@ const ManageProducts = () => {
 
       <div className="bg-white rounded-xl border border-navy/5 shadow-sm overflow-hidden">
         <div className="p-4 border-b border-navy/5 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="relative w-64">
+          <div className="relative w-full sm:w-64">
             <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-navy/40" />
             <input type="text" placeholder="Search products..." className="w-full pl-9 pr-4 py-2 bg-cream border border-navy/10 rounded-lg text-sm text-navy focus:outline-none focus:border-gold" />
           </div>
@@ -639,7 +654,7 @@ const OrdersProfits = () => {
                   return (
                     <tr key={order.id} className="border-b border-navy/5 last:border-0 hover:bg-cream/50 transition-colors">
                       <td className="py-4 px-6 font-medium text-navy">#SLSR-ORD-{order.id}</td>
-                      <td className="py-4 px-6 text-navy/70 max-w-xs break-words">
+                      <td className="py-4 px-6 text-navy/70 max-w-[200px] md:max-w-xs break-words whitespace-normal">
                         <span className="block font-medium">{order.shipping_address}</span>
                         <span className="block text-xs text-navy/50">Pin: {order.pin_code}</span>
                       </td>
@@ -705,11 +720,11 @@ const CustomerManagement = () => {
 
       <div className="bg-white rounded-xl border border-navy/5 shadow-sm overflow-hidden">
         <div className="p-4 border-b border-navy/5 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="relative w-72">
+          <div className="relative w-full sm:w-72">
             <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-navy/40" />
             <input type="text" placeholder="Search by name, email..." className="w-full pl-9 pr-4 py-2 bg-cream border border-navy/10 rounded-lg text-sm text-navy focus:outline-none focus:border-gold" />
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <button className="px-4 py-2 bg-cream border border-navy/10 rounded-lg text-sm font-medium text-navy hover:border-gold transition-colors">Export CSV</button>
           </div>
         </div>
@@ -805,7 +820,7 @@ const ReturnsComplaints = () => {
         <div className="grid grid-cols-1 gap-4">
           {complaints.map((ticket, i) => (
             <div key={i} className="bg-white p-4 md:p-6 rounded-xl border border-navy/5 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex flex-col lg:flex-row justify-between lg:items-start gap-6">
+              <div className="flex flex-col md:flex-row justify-between md:items-start gap-6">
                 
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-3">
@@ -831,7 +846,7 @@ const ReturnsComplaints = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-row lg:flex-col gap-3 min-w-[200px]">
+                <div className="flex flex-col sm:flex-row md:flex-col gap-3 w-full md:w-auto md:min-w-[200px]">
                   {ticket.status !== 'Resolved' && (
                     <button onClick={() => updateStatus(ticket.id, 'Resolved')} className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-green-50 text-green-700 border border-green-200 text-sm font-medium rounded-lg hover:bg-green-100 transition-colors">
                       <CheckCircle size={16} /> Mark Resolved
