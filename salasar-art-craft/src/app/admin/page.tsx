@@ -24,7 +24,7 @@ import {
   ChevronDown,
   CheckCircle,
   XCircle,
-  MessageCircle
+  MessageCircle,
   Menu,
   X,
 } from "lucide-react";
