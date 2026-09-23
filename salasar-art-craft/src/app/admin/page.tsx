@@ -25,6 +25,8 @@ import {
   CheckCircle,
   XCircle,
   MessageCircle
+  Menu,
+  X,
 } from "lucide-react";
 
 const SIDEBAR_ITEMS = [
