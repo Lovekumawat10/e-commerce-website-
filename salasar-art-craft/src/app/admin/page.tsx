@@ -803,7 +803,7 @@ const ReturnsComplaints = () => {
 
   const updateStatus = async (id: number, status: string) => {
     try {
-      const res = await fetch(http://127.0.0.1:8000/admin/complaints//status, {
+      const res = await fetch(`http://127.0.0.1:8000/admin/complaints/${id}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status })
@@ -833,7 +833,7 @@ const ReturnsComplaints = () => {
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="font-semibold text-navy text-sm bg-navy/5 px-3 py-1 rounded-md">{ticket.ticket_id}</span>
-                    <span className={	ext-xs font-medium px-2 py-1 rounded-full }>
+                    <span className={`text-xs font-medium px-2 py-1 rounded-full ${ticket.type === 'Return' ? 'bg-orange-100 text-orange-700' : 'bg-red-100 text-red-700'}`}>
                       {ticket.type}
                     </span>
                     <span className="text-xs text-navy/50 bg-cream px-2 py-1 rounded-full border border-navy/10">{ticket.status}</span>
