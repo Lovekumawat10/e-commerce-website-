@@ -287,31 +287,7 @@ const DashboardOverview = ({ inStock, setInStock }: { inStock: boolean, setInSto
             </div>
           </div>
 
-          {/* Returns & Complaints */}
-          <div className="bg-white p-6 rounded-xl border border-navy/5 shadow-sm border-l-4 border-l-red-500">
-            <h2 className="text-xl font-serif text-navy mb-4">Complaints & Returns Action Required</h2>
-            <div className="space-y-4">
-              {[
-                { id: "#RTN-023", cust: "Priya Singh", item: "Rosewood Divine Arch", reason: "Minor scratch on the base during transit.", date: "Today, 10:45 AM" },
-                { id: "#CMP-104", cust: "Arjun Rao", item: "Custom Marble Order", reason: "Delayed delivery by 3 days.", date: "Yesterday, 04:20 PM" },
-              ].map((ticket, i) => (
-                <div key={i} className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-red-50/50 rounded-lg border border-red-100">
-                  <div>
-                    <div className="flex items-center gap-3 mb-1">
-                      <span className="font-semibold text-navy text-sm">{ticket.id}</span>
-                      <span className="text-xs text-navy/50">• {ticket.date}</span>
-                    </div>
-                    <p className="text-sm font-medium text-navy mb-1">{ticket.cust} - <span className="font-light">{ticket.item}</span></p>
-                    <p className="text-sm text-navy/70">{ticket.reason}</p>
-                  </div>
-                  <div className="mt-4 sm:mt-0 flex gap-2">
-                    <button className="px-3 py-1.5 bg-white border border-navy/20 text-navy text-xs font-medium rounded hover:bg-navy hover:text-white transition-colors">Review</button>
-                    <button className="px-3 py-1.5 bg-navy text-white text-xs font-medium rounded hover:bg-navy-dark transition-colors">Resolve</button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+
 
         </div>
 
