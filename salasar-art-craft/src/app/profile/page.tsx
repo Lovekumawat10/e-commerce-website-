@@ -1,5 +1,7 @@
-"use client";
+﻿"use client";
 
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import React from "react";
 import { useAuth } from "@/context/AuthContext";
 import { motion } from "framer-motion";
@@ -11,6 +13,7 @@ export default function ProfilePage() {
 
   return (
     <main className="min-h-screen bg-cream pt-32 pb-24">
+      <Navbar />
       <div className="container mx-auto px-6 md:px-12 max-w-5xl">
         
         <div className="mb-12">
@@ -149,6 +152,8 @@ export default function ProfilePage() {
           </motion.div>
         </div>
       </div>
-    </main>
+          <Footer />
+</main>
   );
 }
+

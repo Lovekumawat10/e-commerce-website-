@@ -1,5 +1,7 @@
-"use client";
+﻿"use client";
 
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Upload, Send } from "lucide-react";
@@ -20,6 +22,7 @@ export default function CustomOrdersPage() {
 
   return (
     <main className="min-h-screen bg-cream pt-32 pb-24">
+      <Navbar />
       <div className="container mx-auto px-6 md:px-12 max-w-4xl">
         <div className="text-center mb-16">
           <motion.h1 
@@ -111,6 +114,8 @@ export default function CustomOrdersPage() {
           )}
         </motion.div>
       </div>
-    </main>
+          <Footer />
+</main>
   );
 }
+

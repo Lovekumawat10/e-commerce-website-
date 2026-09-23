@@ -1,5 +1,7 @@
-"use client";
+﻿"use client";
 
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
@@ -18,6 +20,7 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-cream pt-32 pb-24">
+      <Navbar />
       <div className="container mx-auto px-6 md:px-12 max-w-7xl">
         <div className="text-center mb-16">
           <motion.h1 
@@ -127,6 +130,8 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </div>
-    </main>
+          <Footer />
+</main>
   );
 }
+

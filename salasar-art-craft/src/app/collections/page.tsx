@@ -1,5 +1,7 @@
-"use client";
+﻿"use client";
 
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,6 +34,7 @@ export default function CollectionsPage() {
 
   return (
     <main className="min-h-screen bg-cream pt-32 pb-24">
+      <Navbar />
       <div className="container mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="mb-12 text-center md:text-left">
@@ -98,7 +101,7 @@ export default function CollectionsPage() {
                         <div className="absolute inset-0 bg-navy/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
                       <h3 className="text-lg font-serif text-navy mb-1 group-hover:text-gold transition-colors">{product.title}</h3>
-                      <p className="text-navy/70 font-medium">₹{product.price.toLocaleString('en-IN')}</p>
+                      <p className="text-navy/70 font-medium">â‚¹{product.price.toLocaleString('en-IN')}</p>
                     </Link>
                   </motion.div>
                 ))}
@@ -107,6 +110,8 @@ export default function CollectionsPage() {
           </div>
         </div>
       </div>
-    </main>
+          <Footer />
+</main>
   );
 }
+

@@ -1,5 +1,7 @@
-"use client";
+﻿"use client";
 
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -80,6 +82,7 @@ export default function OrdersPage() {
 
   return (
     <main className="min-h-screen bg-cream pt-32 pb-24">
+      <Navbar />
       <div className="container mx-auto px-6 md:px-12 max-w-5xl">
         <div className="mb-12">
           <h1 className="text-4xl font-serif text-navy mb-4">My Orders</h1>
@@ -137,7 +140,7 @@ export default function OrdersPage() {
                         <div className="text-sm text-navy/60 flex items-center gap-4">
                           <span>{new Date(order.created_at).toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                           <span className="w-1 h-1 bg-navy/20 rounded-full"></span>
-                          <span className="font-medium text-navy">₹{order.total_amount.toLocaleString('en-IN')}</span>
+                          <span className="font-medium text-navy">â‚¹{order.total_amount.toLocaleString('en-IN')}</span>
                         </div>
                       </div>
                     </div>
@@ -277,6 +280,8 @@ export default function OrdersPage() {
           </div>
         )}
       </div>
-    </main>
+          <Footer />
+</main>
   );
 }
+
