@@ -101,7 +101,7 @@ export default function CollectionsPage() {
                         <div className="absolute inset-0 bg-navy/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
                       <h3 className="text-lg font-serif text-navy mb-1 group-hover:text-gold transition-colors">{product.title}</h3>
-                      <p className="text-navy/70 font-medium">â‚¹{product.price.toLocaleString('en-IN')}</p>
+                      <p className="text-navy/70 font-medium">₹{product.price.toLocaleString('en-IN')}</p>
                     </Link>
                   </motion.div>
                 ))}

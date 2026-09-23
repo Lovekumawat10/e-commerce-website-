@@ -140,7 +140,7 @@ export default function OrdersPage() {
                         <div className="text-sm text-navy/60 flex items-center gap-4">
                           <span>{new Date(order.created_at).toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                           <span className="w-1 h-1 bg-navy/20 rounded-full"></span>
-                          <span className="font-medium text-navy">â‚¹{order.total_amount.toLocaleString('en-IN')}</span>
+                          <span className="font-medium text-navy">₹{order.total_amount.toLocaleString('en-IN')}</span>
                         </div>
                       </div>
                     </div>
